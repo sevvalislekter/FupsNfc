@@ -1,28 +1,26 @@
+
 import React, { useEffect, useState } from 'react';
 import { StatusBar, StyleSheet, useColorScheme, View, Image, Button, Text, TextInput, Alert } from 'react-native';
 import { readNfc } from './nfc/ReadNfc';
 import { writeNfc } from './nfc/WriteNfc';
 import NfcManager from 'react-native-nfc-manager';
-import { clearNfc } from './nfc/ClearNfc';
 function App() {
   useEffect(() => {
-
     NfcManager.start();
     async function checkNfcStatus() {
       const supported = await NfcManager.isSupported();
       if (!supported) {
-        Alert.alert("Uyarı", "Bu cihazda NFC özelliği bulunmamaktadır. Uygulama NFC fonksiyonlarını kullanamayacaktır.");
+        Alert.alert("Uyarı", "Bu cihazda NFC özelliği bulunmamaktadır.");
         return;
       }
-
       const isEnabled = await NfcManager.isEnabled();
       if (!isEnabled) {
         Alert.alert(
           "NFC Kapalı",
           "Lütfen cihazınızın ayarlarından NFC'yi etkinleştirin.",
           [
-            { text: "Tamam", onPress: () => { } },
-            { text: "Ayarlara Git", onPress: () => NfcManager.goToNfcSetting() } // Ayarlara gitme seçeneği
+            { text: "Tamam" },
+            { text: "Ayarlara Git", onPress: () => NfcManager.goToNfcSetting() }
           ]
         );
       }
@@ -47,29 +45,23 @@ function App() {
       />
       <View style={styles.buttonContainer}>
         <Button
-          title="NFC Oku"
+          title="NFC OKU"
           onPress={readNfc}
-          color="#03dac6"
+          color="#0000ff"
         />
       </View>
 
       <View style={styles.buttonContainer}>
         <Button
-          title="NFC Yaz"
+          title="NFC YAZ"
           onPress={() => writeNfc(textToWrite)}
-          color="#03dac6"
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          title="NFC SİL"
-          onPress={clearNfc}
-          color="#03dac6"
+          color="#0000ff"
         />
       </View>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -102,4 +94,5 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 });
+
 export default App;

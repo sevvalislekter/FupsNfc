@@ -1,3 +1,7 @@
 {
-  "extends": "@react-native/typescript-config"
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "esModuleInterop": true, // Bu satırı ekleyin veya true yapın
+    "skipLibCheck": true // Bu da faydalı olabilir, eklemenizi tavsiye ederim
+  }
 }
