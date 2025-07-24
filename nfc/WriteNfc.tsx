@@ -8,6 +8,7 @@ export async function writeNfc(text: string) {
     }
     isNfcOperationInProgress = true;
     try {
+        Alert.alert("NFC Yaz", "Lütfen telefonu NFC etikete yaklaştırın...");
         await NfcManager.requestTechnology(NfcTech.Ndef);
         const record = text.startsWith("http")
             ? Ndef.uriRecord(text)

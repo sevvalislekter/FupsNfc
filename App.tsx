@@ -30,6 +30,13 @@ function App() {
 
   const isDarkMode = useColorScheme() === 'dark';
   const [textToWrite, setTextToWrite] = useState('');
+  const [nfcData, setNfcData] = useState('');
+  const handleReadNfc = async () => {
+    const result = await readNfc();
+    if (result) {
+      setNfcData(result);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -43,13 +50,6 @@ function App() {
         onChangeText={setTextToWrite}
         value={textToWrite}
       />
-      <View style={styles.buttonContainer}>
-        <Button
-          title="NFC OKU"
-          onPress={readNfc}
-          color="#0000ff"
-        />
-      </View>
 
       <View style={styles.buttonContainer}>
         <Button
@@ -58,6 +58,18 @@ function App() {
           color="#0000ff"
         />
       </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="NFC OKU"
+          onPress={handleReadNfc}
+          color="#0000ff"
+        />
+        <Text style={styles.resultText}>
+          {nfcData ? `Okunan Veri: ${nfcData}` : ''}
+        </Text>
+
+      </View>
+
     </View>
   );
 }
@@ -93,6 +105,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
   },
+  resultText: {
+    fontSize: 18,
+    color: 'black',
+    textAlign: 'center',
+    marginTop: 10,
+  },
+
 });
 
 export default App;

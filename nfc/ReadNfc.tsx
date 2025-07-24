@@ -1,7 +1,6 @@
 
 import { Alert, Linking } from 'react-native';
 import NfcManager, { NfcTech, Ndef } from 'react-native-nfc-manager';
-
 export async function readNfc() {
     try {
         Alert.alert("NFC Okuma", "Lütfen telefonu NFC etikete yaklaştırın...");
@@ -12,12 +11,10 @@ export async function readNfc() {
             Alert.alert("Hata", "NFC etiketi okunamadı veya NDEF mesajı yok.");
             return;
         }
-
         const ndefRecord = tag.ndefMessage[0];
         const type = Ndef.util.bytesToString(ndefRecord.type);
         const payloadArray = new Uint8Array(ndefRecord.payload);
         let payload = "";
-
         if (ndefRecord.tnf === Ndef.TNF_WELL_KNOWN) {
             if (type === 'U') {
                 payload = Ndef.uri.decodePayload(payloadArray);
@@ -29,7 +26,6 @@ export async function readNfc() {
         } else {
             payload = `[Desteklenmeyen TNF] ${ndefRecord.tnf}`;
         }
-
         if (payload.startsWith('http://') || payload.startsWith('https://')) {
             Alert.alert(
                 'URL Bulundu',
@@ -41,7 +37,7 @@ export async function readNfc() {
             );
         } else {
             Alert.alert('NFC Okundu', payload);
-
+            return payload;
         }
     } catch (ex) {
         console.warn('NFC Okuma Hatası:', ex);
@@ -59,6 +55,7 @@ export async function readNfc() {
                 );
             } else {
                 Alert.alert('Hata', 'NFC okunamadı: ' + ex.message);
+
             }
         } else {
             Alert.alert('Hata', 'NFC okunamadı: Bilinmeyen bir hata oluştu.');
