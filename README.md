@@ -7,6 +7,7 @@ git clone https://github.com/sevvalislekter/FupsNfc.git
 cd FupsNfc
 npm install
 npx react-native run-android
+```
 
 ios için
 cd ios
