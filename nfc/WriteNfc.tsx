@@ -10,7 +10,7 @@ export async function writeNfc(text: string) {
     try {
         Alert.alert("NFC Yaz", "Lütfen telefonu NFC etikete yaklaştırın...");
         await NfcManager.requestTechnology(NfcTech.Ndef);
-        const record = text.startsWith("http")
+        const record = text.startsWith("http://") || text.startsWith("https://")
             ? Ndef.uriRecord(text)
             : Ndef.textRecord(text);
         const bytes = Ndef.encodeMessage([record]);

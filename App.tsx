@@ -28,7 +28,7 @@ function App() {
     checkNfcStatus();
   }, []);
 
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'light';
   const [textToWrite, setTextToWrite] = useState('');
   const [nfcData, setNfcData] = useState('');
   const handleReadNfc = async () => {
@@ -49,8 +49,8 @@ function App() {
         placeholder='Veri girin'
         onChangeText={setTextToWrite}
         value={textToWrite}
-      />
 
+      />
       <View style={styles.buttonContainer}>
         <Button
           title="NFC YAZ"
