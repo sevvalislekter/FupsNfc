@@ -1,19 +1,19 @@
 # NFC APP
 Bu projenin amacı nfc çip veya nfc kartları okuyabilen ve  üzerine yazma işlemleri yapan bir uygulamadır.
-## Terminal kodları
+## Projeye Erişmek için
+
+```bash
 git clone https://github.com/sevvalislekter/FupsNfc.git
-
 cd FupsNfc
+npm install
+npx react-native run-android
 
-npx react-native init FupsNfc şeklinde önce projeyi oluşturdum.
+ios için
+cd ios
+pod install
+cd ..
+npx react-native run-ios
 
-npm install  -npm modülleri kullanmak için 
-
-npm install --save react-native-nfc-manager    gerekli nfc kütüphaneleri ,modülleri kullanacağımız o paket
-
-npx react-native start --reset-cache   bu modul ise javascript,typescript kodlarımızı mobilden de çalıştırır metro bundle olarak geçiyor.
-
-npx react-native run-android    projeyi ayağa kaldırır.
 
 # Kullanılan Nfc bileşenler
 -NfcManager.start():Nfc bulma teknolojisini  başlatıyor.Bu kodu app.tsx içinde başlattık uygulama açıldığı an başlamış oluyor.
