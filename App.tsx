@@ -1,9 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
-import { StatusBar, StyleSheet, useColorScheme, View, Image, Button, Text, TextInput, Alert } from 'react-native';
+import { StatusBar, StyleSheet, View, Image, Button, Text, TextInput, Alert } from 'react-native';
 import { readNfc } from './nfc/ReadNfc';
 import { writeNfc } from './nfc/WriteNfc';
 import NfcManager from 'react-native-nfc-manager';
+
 function App() {
   useEffect(() => {
     NfcManager.start();
@@ -28,7 +29,6 @@ function App() {
     checkNfcStatus();
   }, []);
 
-  const isDarkMode = useColorScheme() === 'light';
   const [textToWrite, setTextToWrite] = useState('');
   const [nfcData, setNfcData] = useState('');
   const handleReadNfc = async () => {
@@ -41,7 +41,7 @@ function App() {
   return (
     <View style={styles.container}>
       <Image style={styles.img} source={require('./img/fups.jpg')} />
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle="dark-content" />
       <Text style={styles.text}>NFC APP</Text>
 
       <TextInput
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 50,
+    backgroundColor: 'white',
   },
   text: {
     fontSize: 25,

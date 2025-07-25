@@ -11,6 +11,7 @@ export async function readNfc() {
             Alert.alert("Hata", "NFC etiketi okunamadı veya NDEF mesajı yok.");
             return;
         }
+
         const ndefRecord = tag.ndefMessage[0];
         const type = Ndef.util.bytesToString(ndefRecord.type);
         const payloadArray = new Uint8Array(ndefRecord.payload);
