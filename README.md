@@ -10,6 +10,7 @@ npx react-native run-android
 ```
 
 ios için;
+```bash
 cd ios
 
 pod install
@@ -17,7 +18,7 @@ pod install
 cd ..
 
 npx react-native run-ios
-
+```
 
 # Kullanılan Nfc bileşenler
 -NfcManager.start():Nfc bulma teknolojisini  başlatıyor.Bu kodu app.tsx içinde başlattık uygulama açıldığı an başlamış oluyor.
