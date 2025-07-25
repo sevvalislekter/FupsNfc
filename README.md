@@ -9,10 +9,13 @@ npm install
 npx react-native run-android
 ```
 
-ios için
+ios için;
 cd ios
+
 pod install
+
 cd ..
+
 npx react-native run-ios
 
 
