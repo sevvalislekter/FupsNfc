@@ -21,36 +21,70 @@ npx react-native run-ios
 ```
 
 # Kullanılan Nfc bileşenler
--NfcManager.start():Nfc bulma teknolojisini  başlatıyor.Bu kodu app.tsx içinde başlattık uygulama açıldığı an başlamış oluyor.
+-NfcManager.start():
 
--NfcManager.isSupported():Nfc özellik destekliyor mu 
+Nfc bulma teknolojisini  başlatıyor.Bu kodu app.tsx içinde başlattık uygulama açıldığı an başlamış oluyor.
 
--NfcManager.isEnabled():Nfc özellik var ama ayarlardan kapalı olması durumunda kullanılır
+-NfcManager.isSupported():
 
--NfcManager.goToNfcSetting():Eğer kapalıysa ayarlara yönlendiriyor.
+Nfc özellik destekliyor mu , bunun kontrolunu sağlıyor. 
 
--NfcManager.requestTechnology(NfcTech.Ndef):Yakınlarda  ndef türü bir çip olup olmadığına bakılır
+-NfcManager.isEnabled():
 
--const tag = await NfcManager.getTag():Daha sonra içindeki veriyi getTagle erişiyoruz
+Nfc özellik var ama ayarlardan kapalı olması durumunda kullanılır
 
--tag.ndefMessage: tag'in içindeki ndefMessage alınır.Genelde bir dizi içinde olduğu için sırada olan ilk eleman alınır
+-NfcManager.goToNfcSetting():
 
--Ndef.util.bytesToString(ndefRecord.type): Ndef'i string'e çevirir.
+Eğer kapalıysa ayarlara yönlendiriyor.
 
--Uint8Array(ndefRecord.payload):  Nfc'nin anlayacağı şekilde çevriliyor
+-NfcManager.requestTechnology(NfcTech.Ndef):
 
--ndefRecord.tnf === Ndef.TNF_WELL_KNOWN): verinin türünü bilinen bir değere eşit olup olmadığına bakıyor tnf burada veri türü oluyor.
+Yakınlarda  ndef türü bir çip olup olmadığına bakılır
 
--Ndef.uri.decodePayload(payloadArray): eğer url ise uri olarak
+-const tag = await NfcManager.getTag():
 
--Ndef.text.decodePayload(payloadArray); text ise text olarak 
+Daha sonra içindeki veriyi getTagle erişiyoruz
 
--NfcManager.cancelTechnologyRequest(); Nfc teknolojisiyle işimiz bittiğinde kapatıyoruz
+-tag.ndefMessage: 
 
--let isNfcOperationInProgress = false: Birden fazla nfc işlem olmaması için en başta bunu false olarak tanımlıyoruz .
+Tag'in içindeki ndefMessage alınır.Genelde bir dizi içinde olduğu için sırada olan ilk eleman alınır
 
--Ndef.encodeMessage([record]): Ndef'i kaydın içine yazıyor
+-Ndef.util.bytesToString(ndefRecord.type): 
 
--const record = text.startsWith("http") ? Ndef.uriRecord(text):Ndef.textRecord(text): Kayıt http veya https ile başlıyorsa url olarak etiketliyor değilse text
+Ndef'i string'e çevirir.
 
--await NfcManager.ndefHandler.writeNdefMessage(bytes): Burada ise yazmak istediğimiz veriyi bu fonksiyonla yazıyoruz
+-Uint8Array(ndefRecord.payload):  
+
+Nfc'nin anlayacağı şekilde çevriliyor
+
+-ndefRecord.tnf === Ndef.TNF_WELL_KNOWN): 
+
+Verinin türünü bilinen bir değere eşit olup olmadığına bakıyor tnf burada veri türü oluyor.
+
+-Ndef.uri.decodePayload(payloadArray): 
+
+Eğer url ise uri olarak
+
+-Ndef.text.decodePayload(payloadArray); 
+
+Text ise text olarak 
+
+-NfcManager.cancelTechnologyRequest(); 
+
+Nfc teknolojisiyle işimiz bittiğinde kapatıyoruz
+
+-let isNfcOperationInProgress = false: 
+
+Birden fazla nfc işlem olmaması için en başta bunu false olarak tanımlıyoruz .
+
+-Ndef.encodeMessage([record]): 
+
+Ndef'i kaydın içine yazıyor
+
+-const record = text.startsWith("http") ? Ndef.uriRecord(text):Ndef.textRecord(text): 
+
+Kayıt http veya https ile başlıyorsa url olarak etiketliyor değilse text
+
+-await NfcManager.ndefHandler.writeNdefMessage(bytes): 
+
+Burada ise yazmak istediğimiz veriyi bu fonksiyonla yazıyoruz
