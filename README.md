@@ -87,4 +87,26 @@ Kayıt http veya https ile başlıyorsa url olarak etiketliyor değilse text
 
 -await NfcManager.ndefHandler.writeNdefMessage(bytes): 
 
-Burada ise yazmak istediğimiz veriyi bu fonksiyonla yazıyoruz
+Burada ise yazmak istediğimiz veriyi bu fonksiyonla yazıyoruz.
+
+# Android kısmı için apk oluşturmak
+
+-ilk önce gerekli ortamların yüklü olup olmadığını kontrol edin.
+
+-Release için key store oluşturun
+
+```bash
+keytool -genkeypair -v -keystore my-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000
+```
+
+```bash
+cd android
+```
+
+```bash
+./gradlew assembleRelease
+```
+Sonunda apk oluşmuş olur ve android/app/build/outputs/apk/release/app-release.apk
+buranın içinde yüklenmiş olur.İsterseniz bir nfc özellik bulunan bir telefona gönderip test edebilirsiniz.
+
+
